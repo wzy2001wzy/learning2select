@@ -1,0 +1,365 @@
+{
+  "qwen-0.6b": {
+    "nfcorpus": {
+      "epoch": 75,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_nfcorpus_ep75_temp0.05.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_scifact_ep200_temp0.05.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 50,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_msmarco_subset_50k_ep50_temp0.1.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 200,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_nfcorpus_LLM_ep200_temp0.05.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 15,
+      "temp": 0.2,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_scifact_LLM_ep15_temp0.2.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 50,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_msmarco_subset_50k_LLM_ep50_temp0.01.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 100,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_nfcorpus_LLM_hard_ep100_temp0.02.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 200,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_scifact_LLM_hard_ep200_temp0.05.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 20,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_qwen-0.6b_msmarco_subset_50k_LLM_hard_ep20_temp0.01.pt"
+    }
+  },
+  "qwen-4b": {
+    "nfcorpus": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_qwen-4b_nfcorpus_ep200_temp0.02.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_qwen-4b_scifact_ep200_temp0.02.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 10,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_qwen-4b_msmarco_subset_50k_ep10_temp0.01.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 200,
+      "temp": 0.2,
+      "ckpt": "results/saved_routers/router_qwen-4b_nfcorpus_LLM_ep200_temp0.2.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 30,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-4b_scifact_LLM_ep30_temp0.05.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 10,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_qwen-4b_msmarco_subset_50k_LLM_ep10_temp0.01.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 100,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-4b_nfcorpus_LLM_hard_ep100_temp0.05.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 10,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_qwen-4b_scifact_LLM_hard_ep10_temp0.02.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 10,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_qwen-4b_msmarco_subset_50k_LLM_hard_ep10_temp0.005.pt"
+    }
+  },
+  "qwen-8b": {
+    "nfcorpus": {
+      "epoch": 200,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_qwen-8b_nfcorpus_ep200_temp0.005.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-8b_scifact_ep200_temp0.05.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 50,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_qwen-8b_msmarco_subset_50k_ep50_temp0.02.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 100,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-8b_nfcorpus_LLM_ep100_temp0.05.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 10,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_qwen-8b_scifact_LLM_ep10_temp0.1.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 20,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_qwen-8b_msmarco_subset_50k_LLM_ep20_temp0.01.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 100,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_qwen-8b_nfcorpus_LLM_hard_ep100_temp0.05.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 50,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_qwen-8b_scifact_LLM_hard_ep50_temp0.1.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 100,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_qwen-8b_msmarco_subset_50k_LLM_hard_ep100_temp0.005.pt"
+    }
+  },
+  "mxbai": {
+    "nfcorpus": {
+      "epoch": 200,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_mxbai_nfcorpus_ep200_temp0.0005.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.002,
+      "ckpt": "results/saved_routers/router_mxbai_scifact_ep200_temp0.002.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 100,
+      "temp": 0.001,
+      "ckpt": "results/saved_routers/router_mxbai_msmarco_subset_50k_ep100_temp0.001.pt"
+    }
+  },
+  "sgpt": {
+    "nfcorpus": {
+      "epoch": 15,
+      "temp": 0.5,
+      "ckpt": "results/saved_routers/router_sgpt_nfcorpus_ep15_temp0.5.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_sgpt_scifact_ep200_temp0.005.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 20,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_sgpt_msmarco_subset_50k_ep20_temp0.0005.pt"
+    }
+  },
+  "gritlm": {
+    "nfcorpus": {
+      "epoch": 100,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_gritlm_nfcorpus_ep100_temp0.01.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_gritlm_scifact_ep200_temp0.05.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_gritlm_msmarco_subset_50k_ep200_temp0.02.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 200,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_gritlm_nfcorpus_LLM_ep200_temp0.01.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 10,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_gritlm_scifact_LLM_ep10_temp0.1.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 100,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_gritlm_msmarco_subset_50k_LLM_ep100_temp0.02.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 50,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_gritlm_nfcorpus_LLM_hard_ep50_temp0.01.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 10,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_gritlm_scifact_LLM_hard_ep10_temp0.1.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 20,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_gritlm_msmarco_subset_50k_LLM_hard_ep20_temp0.02.pt"
+    }
+  },
+  "llm2vec_mistral_sup": {
+    "nfcorpus": {
+      "epoch": 200,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_nfcorpus_ep200_temp0.0005.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_scifact_ep200_temp0.0005.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 150,
+      "temp": 0.001,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_msmarco_subset_50k_ep150_temp0.001.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 20,
+      "temp": 0.002,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_nfcorpus_LLM_ep20_temp0.002.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 20,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_scifact_LLM_ep20_temp0.05.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 20,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_msmarco_subset_50k_LLM_ep20_temp0.005.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 10,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_nfcorpus_LLM_hard_ep10_temp0.02.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 100,
+      "temp": 0.05,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_scifact_LLM_hard_ep100_temp0.05.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_llm2vec_mistral_sup_msmarco_subset_50k_LLM_hard_ep200_temp0.02.pt"
+    }
+  },
+  "llm2vec_llama3_sup": {
+    "nfcorpus": {
+      "epoch": 50,
+      "temp": 0.0002,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_nfcorpus_ep50_temp0.0002.pt"
+    },
+    "scifact": {
+      "epoch": 100,
+      "temp": 0.0002,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_scifact_ep100_temp0.0002.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 100,
+      "temp": 0.0008,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_msmarco_subset_50k_ep100_temp0.0008.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 100,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_nfcorpus_LLM_ep100_temp0.0005.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 100,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_scifact_LLM_ep100_temp0.0005.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 100,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_msmarco_subset_50k_LLM_ep100_temp0.005.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 50,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_nfcorpus_LLM_hard_ep50_temp0.0005.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 50,
+      "temp": 0.0005,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_scifact_LLM_hard_ep50_temp0.0005.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 200,
+      "temp": 0.001,
+      "ckpt": "results/saved_routers/router_llm2vec_llama3_sup_msmarco_subset_50k_LLM_hard_ep200_temp0.001.pt"
+    }
+  },
+  "openAI": {
+    "nfcorpus": {
+      "epoch": 200,
+      "temp": 0.002,
+      "ckpt": "results/saved_routers/router_openAI_nfcorpus_ep200_temp0.002.pt"
+    },
+    "scifact": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_openAI_scifact_ep200_temp0.02.pt"
+    },
+    "msmarco_subset_50k": {
+      "epoch": 20,
+      "temp": 0.1,
+      "ckpt": "results/saved_routers/router_openAI_msmarco_subset_50k_ep20_temp0.1.pt"
+    },
+    "nfcorpus_LLM": {
+      "epoch": 200,
+      "temp": 0.01,
+      "ckpt": "results/saved_routers/router_openAI_nfcorpus_LLM_ep200_temp0.01.pt"
+    },
+    "scifact_LLM": {
+      "epoch": 20,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_openAI_scifact_LLM_ep20_temp0.005.pt"
+    },
+    "msmarco_subset_50k_LLM": {
+      "epoch": 10,
+      "temp": 0.001,
+      "ckpt": "results/saved_routers/router_openAI_msmarco_subset_50k_LLM_ep10_temp0.001.pt"
+    },
+    "nfcorpus_LLM_hard": {
+      "epoch": 200,
+      "temp": 0.02,
+      "ckpt": "results/saved_routers/router_openAI_nfcorpus_LLM_hard_ep200_temp0.02.pt"
+    },
+    "scifact_LLM_hard": {
+      "epoch": 10,
+      "temp": 0.005,
+      "ckpt": "results/saved_routers/router_openAI_scifact_LLM_hard_ep10_temp0.005.pt"
+    },
+    "msmarco_subset_50k_LLM_hard": {
+      "epoch": 20,
+      "temp": 0.001,
+      "ckpt": "results/saved_routers/router_openAI_msmarco_subset_50k_LLM_hard_ep20_temp0.001.pt"
+    }
+  }
+}
