@@ -174,7 +174,7 @@ Below are the most important arguments.
 
 - `--best-hyperparams-file`  
   JSON file containing the selected hyperparameters for each `(model, dataset)` pair.  
-  The script reads `epoch` and `temp` from this file.
+  The script reads `epoch` and `temp` from this file and trains once with those values. The `ckpt` field records a previous checkpoint path and is not used for this training run.
 
 ### Training-related arguments
 
@@ -182,11 +182,7 @@ Below are the most important arguments.
   Learning rate for training the predictor.
 
 - `--batch-size`  
-  Batch size used during training and validation.
-
-- `--train-ratio`  
-  Ratio used to split the generated training set into training and validation subsets.  
-  For example, `0.9` means 90% for training and 10% for validation.
+  Batch size used during training.
 
 - `--seed`  
   Random seed for reproducibility.

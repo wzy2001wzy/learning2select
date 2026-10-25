@@ -11,7 +11,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader, random_split
+from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 from beir.datasets.data_loader import GenericDataLoader
 
@@ -29,7 +29,6 @@ class RunConfig:
     seed: int = 42
     lr: float = 1e-4
     batch_size: int = 32
-    train_ratio: float = 0.9
 
     hard_negative_topk: int = 1000
     num_negatives: int = 64
@@ -55,7 +54,6 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--batch-size", type=int, default=32)
-    parser.add_argument("--train-ratio", type=float, default=0.9)
     parser.add_argument("--hard-negative-topk", type=int, default=1000)
     parser.add_argument("--num-negatives", type=int, default=64)
     parser.add_argument("--device", type=str, default=None)
@@ -277,7 +275,6 @@ def generate_soft_oracle_labels_multilevel(
 def train_predictor(
     model,
     train_loader,
-    val_loader,
     epochs: int = 5,
     device: str = "cuda",
     lr: float = 1e-4,
@@ -285,9 +282,6 @@ def train_predictor(
     criterion = nn.KLDivLoss(reduction="batchmean")
     optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
-
-    best_val_loss = float("inf")
-    best_state = None
 
     for epoch_idx in range(epochs):
         model.train()
@@ -307,34 +301,11 @@ def train_predictor(
 
         scheduler.step()
 
-        model.eval()
-        total_val_loss = 0.0
-        with torch.no_grad():
-            for q_batch, target_batch in val_loader:
-                q_batch = q_batch.to(device)
-                target_batch = target_batch.to(device)
-
-                log_probs = model(q_batch)
-                loss = criterion(log_probs, target_batch)
-                total_val_loss += loss.item()
-
         avg_train_loss = total_train_loss / max(len(train_loader), 1)
-        avg_val_loss = total_val_loss / max(len(val_loader), 1)
-        if epoch_idx % 10 == 0:
-            print(
-                f"    Epoch {epoch_idx + 1}/{epochs} | "
-                f"train_loss={avg_train_loss:.6f} | val_loss={avg_val_loss:.6f}"
-            )
+        if epoch_idx % 10 == 0 or epoch_idx == epochs - 1:
+            print(f"    Epoch {epoch_idx + 1}/{epochs} | train_loss={avg_train_loss:.6f}")
 
-        if avg_val_loss < best_val_loss:
-            best_val_loss = avg_val_loss
-            best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
-
-    if best_state is None:
-        raise RuntimeError("Training failed: no best model state was saved.")
-
-    model.load_state_dict(best_state)
-    return model, best_val_loss
+    return model, avg_train_loss
 
 
 # ========== Evaluation ==========
@@ -505,6 +476,10 @@ def run_single_experiment(model_name: str, dataset_name: str, hyps: Dict, config
 
     epoch = hyps[model_name][dataset_name]["epoch"]
     temp = hyps[model_name][dataset_name]["temp"]
+    if not isinstance(epoch, int) or isinstance(epoch, bool) or epoch < 1:
+        raise ValueError(f"Invalid epoch for {model_name} / {dataset_name}: {epoch!r}")
+    if not isinstance(temp, (int, float)) or isinstance(temp, bool) or temp <= 0:
+        raise ValueError(f"Invalid temp for {model_name} / {dataset_name}: {temp!r}")
 
     predictor_path = os.path.join(config.save_dir, model_name, f"{dataset_name}.pt")
     result_file = os.path.join(config.base_result_path, model_name, f"{dataset_name}.json")
@@ -549,27 +524,13 @@ def run_single_experiment(model_name: str, dataset_name: str, hyps: Dict, config
     )
 
     dataset = PredictorDataset(X_train, Y_train)
-    train_size = int(config.train_ratio * len(dataset))
-    val_size = len(dataset) - train_size
-
-    if train_size <= 0 or val_size <= 0:
-        raise ValueError(
-            f"Invalid split: dataset size={len(dataset)}, "
-            f"train_size={train_size}, val_size={val_size}. "
-            f"Please adjust train_ratio."
-        )
-
-    train_ds, val_ds = random_split(dataset, [train_size, val_size])
-
-    train_loader = DataLoader(train_ds, batch_size=config.batch_size, shuffle=True)
-    val_loader = DataLoader(val_ds, batch_size=config.batch_size, shuffle=False)
+    train_loader = DataLoader(dataset, batch_size=config.batch_size, shuffle=True)
 
     print(f"  > Training predictor (epochs={epoch})...")
     predictor = DimensionPredictor(input_dim=q_emb_train.shape[1]).to(config.device)
-    predictor, best_val_loss = train_predictor(
+    predictor, final_train_loss = train_predictor(
         model=predictor,
         train_loader=train_loader,
-        val_loader=val_loader,
         epochs=epoch,
         device=config.device,
         lr=config.lr,
@@ -586,11 +547,10 @@ def run_single_experiment(model_name: str, dataset_name: str, hyps: Dict, config
             "temperature": temp,
             "lr": config.lr,
             "batch_size": config.batch_size,
-            "train_ratio": config.train_ratio,
             "hard_negative_topk": config.hard_negative_topk,
             "num_negatives": config.num_negatives,
             "seed": config.seed,
-            "best_val_loss": best_val_loss,
+            "final_train_loss": final_train_loss,
         },
         predictor_path,
     )
@@ -615,7 +575,6 @@ def run_single_experiment(model_name: str, dataset_name: str, hyps: Dict, config
             "temperature": temp,
             "lr": config.lr,
             "batch_size": config.batch_size,
-            "train_ratio": config.train_ratio,
             "hard_negative_topk": config.hard_negative_topk,
             "num_negatives": config.num_negatives,
             "seed": config.seed,
@@ -627,7 +586,7 @@ def run_single_experiment(model_name: str, dataset_name: str, hyps: Dict, config
         "training": {
             "num_training_queries": len(train_q_ids),
             "num_labeled_queries": len(dataset),
-            "best_val_loss": best_val_loss,
+            "final_train_loss": final_train_loss,
         },
         "evaluation": {
             "schedule": eval_results["schedule"],
@@ -668,7 +627,6 @@ def main():
         seed=args.seed,
         lr=args.lr,
         batch_size=args.batch_size,
-        train_ratio=args.train_ratio,
         hard_negative_topk=args.hard_negative_topk,
         num_negatives=args.num_negatives,
         device=device,
